@@ -46,9 +46,22 @@ export default function Dashboard({ data }: DashboardProps) {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-4">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Insurance Recommendation Results</h1>
           <p className="text-gray-600">Your personalized insurance analysis</p>
+        </div>
+
+        {/* Print Button */}
+        <div className="flex justify-end mb-6">
+          <button
+            onClick={() => window.print()}
+            className="px-6 py-2.5 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition shadow-lg hover:shadow-xl flex items-center space-x-2"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            <span>Print Results</span>
+          </button>
         </div>
 
         {/* Main Policy Recommendation */}
@@ -308,19 +321,13 @@ export default function Dashboard({ data }: DashboardProps) {
           </div>
         )}
 
-        {/* Action Buttons */}
-        <div className="flex justify-center space-x-4 mb-8">
+        {/* Action Button */}
+        <div className="flex justify-center mb-8">
           <button
             onClick={() => window.location.reload()}
             className="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg font-medium hover:from-blue-600 hover:to-indigo-700 transition shadow-lg hover:shadow-xl"
           >
             New Recommendation
-          </button>
-          <button
-            onClick={() => window.print()}
-            className="px-8 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition shadow-lg hover:shadow-xl"
-          >
-            Print Results
           </button>
         </div>
       </div>
