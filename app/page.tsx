@@ -3,12 +3,15 @@
 import { useState } from 'react';
 import { FormData } from '@/types/types';
 import { defaultFormData } from '@/types/defaultValues';
+import { ApiResponse } from '@/types/apiResponse';
+import Dashboard from './components/Dashboard';
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [responseData, setResponseData] = useState<ApiResponse | null>(null);
 
   const [formData, setFormData] = useState<FormData>(defaultFormData);
 
@@ -53,6 +56,7 @@ export default function Home() {
       }
 
       console.log('Success:', result);
+      setResponseData(result);
       setSubmitSuccess(true);
     } catch (error) {
       console.error('Error:', error);
@@ -67,6 +71,11 @@ export default function Home() {
 
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
+
+  // If we have a successful response, show the dashboard
+  if (submitSuccess && responseData) {
+    return <Dashboard data={responseData} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
